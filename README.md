@@ -3,7 +3,7 @@ This is a module that has a function that can return an object with more functio
 
 (This is just for fun, it may have already been done before)
 
-vvHere's some functions, more info on the wiki page
+vv Here's some functions, more info on the wiki page
 
 BetterTablesModule:new(table) -> returns BetterTable object with the table
 
