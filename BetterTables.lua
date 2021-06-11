@@ -23,6 +23,11 @@ t.enum = {
 
 local BetterTables = {}
 
+t.Info = {
+	Changelog = [[Nothing yet]],
+	Ver = "1.0.0"
+}
+
 function t:getBetterTables()
 	return t:new(BetterTables)
 end
