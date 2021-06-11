@@ -7,7 +7,7 @@ t.enum = {
 		dataRemoved = '97915508228716758441251773444413171553208',
 		dataAdded = '564279816125816306101261992129077794804441'
 	},
-	merging = {
+	adding = {
 		overwrite = '95696227653688411837345784762355354743515'
 	},
 	misc = {
@@ -71,9 +71,11 @@ function t:new(a)
 		return toReturn
 	end
 	
-	m.add = function(value,index)
+	m.add = function(value,index,overwrite)
 		if index then
-			array[index] = value
+			if array[index] ~= nil and (overwrite == enum.adding.overwrite) then
+				array[index] = value
+			end
 		else
 			table.insert(array,#array+1,value)
 		end
@@ -104,6 +106,7 @@ function t:new(a)
 			toPrint = toPrint..tostring(i).." = "..tostring(v).."\n"
 		end
 		print(toPrint)
+		return nil
 	end
 	
 	m.concat = function()
@@ -149,6 +152,7 @@ function t:new(a)
 		pcall(function()
 			table.foreach(array,callback)
 		end)
+		return array
 	end
 	
 	m.toArray = function()
@@ -156,8 +160,11 @@ function t:new(a)
 	end
 	
 	m.call = function(index,...)
-		assert(typeof(array[index]) == "function", "The index you called is not a function!")
-		array[index](...)
+		if not typeof(array[index]) == "function" then
+			warn("Function not called! Index is not a function in the table. Real Value:",array[index])
+			return nil
+		end
+		return array[index](...)
 	end
 	
 	m.get = function(index)
@@ -222,7 +229,7 @@ function t:new(a)
 		local clonedArray = m.cloneArray()
 		
 		for i,v in pairs(BetterTable.toArray()) do
-			if clonedArray[i] ~= nil and index == enum.merging.overwrite then
+			if clonedArray[i] ~= nil and index == enum.adding.overwrite then
 				clonedArray[i] = v
 			elseif array[i] == nil then
 				clonedArray[i] = v
@@ -269,11 +276,13 @@ function t:new(a)
 		
 		BetterTable.help() -> prints and returns a list of functions to use
 		
-		BetterTable:print() -> prints all of the values in the table
+		BetterTable.print() -> prints all of the values in the table
 		]]
 		print(Text)
 		return Text
 	end
+	
+	table.insert(BetterTables,1,m)
 	
 	return m
 end
