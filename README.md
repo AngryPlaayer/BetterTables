@@ -1,6 +1,27 @@
 # BetterTables
 This is a module that has a function that can return an object with more functions for a table!
 
+(This is just for fun, it may have already been done before)
+
+vvHere's some functions, more info on the wiki page
+
+BetterTablesModule:new(table) -> returns BetterTable object with the table
+
+BetterTablesModule:getBetterTables() -> returns every single BetterTable object in the server
+
+BetterTablesModule.enum -> all the enums for the module
+	events:
+		dataAdded
+		dataRemoved
+	merging:
+		overwrite
+	sorting:
+		leastGreatest
+		greatestLeast
+		random
+		equalTo
+(More info on enums in the wiki)
+
 BetterTable.is -> returns enum.misc.is, useful for identifying BetterTable objects
 		
 BetterTable.on(index,callback) -> callback will run every time the specified event happens, carrying respective paramaters
