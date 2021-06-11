@@ -3,6 +3,8 @@ This is a module that has a function that can return an object with more functio
 
 (This is just for fun, it may have already been done before)
 
+Learn more https://github.com/AngryPlaayer/BetterTables/wiki
+
 Here's some functions, more info on the wiki page
 ### VV
 
